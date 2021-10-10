@@ -47,8 +47,9 @@ int main(int argc, char const *argv[])
 				std::cout << std::endl;
 			}
 
+			int &number = val;
 			if (num_accepted)
-			/* Create a method similar to fj->createfolders() */
+				fj->createFolders("makeMe", number);
 		}
 	}
 
