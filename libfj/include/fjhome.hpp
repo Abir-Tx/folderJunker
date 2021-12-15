@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <cstdlib>
 #include <direct.h>
+#include <string>
 namespace FJ
 {
 	class FolderJunker
@@ -16,6 +17,7 @@ namespace FJ
 		~FolderJunker();
 		void initializeTitle();
 		void createFolders(const char *folderName, int numbers);
+		void createFolders(int numbers);
 	};
 
 } // namespace FJ

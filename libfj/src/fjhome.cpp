@@ -24,7 +24,26 @@ void FolderJunker::createFolders(const char *folderName, int numbers)
 	try
 	{
 		for (int i = 0; i < numbers; i++)
-			_mkdir(folderName++);
+			_mkdir((std::to_string(num++)).c_str());
+		std::cout << "Folder creation successfull" << std::endl;
+	}
+	catch (...)
+	{
+		std::cout << "Errors occured while creating folders." << std::endl;
+	}
+}
+
+void FolderJunker::createFolders(int numbers)
+{
+	std::cout << "Creating " << numbers << " folders"
+		  << " in this current directory..." << std::endl;
+
+	srand(time(0));
+	int num = rand() % 100;
+	try
+	{
+		for (int i = 0; i < numbers; i++)
+			_mkdir((std::to_string(num++)).c_str());
 		std::cout << "Folder creation successfull" << std::endl;
 	}
 	catch (...)
