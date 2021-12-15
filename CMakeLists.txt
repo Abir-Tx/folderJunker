@@ -7,4 +7,4 @@ add_subdirectory(libfj)
 include_directories(libfj/include)
 add_executable(folderJunker folderJunker.cpp)
 
-target_link_libraries(folderJunker libfj)
+target_link_libraries(folderJunker libfj -static-libgcc -static-libstdc++ -static -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic)
