@@ -5,7 +5,7 @@
 
 namespace FJ
 {
-	extern std::string currentVersion = "v1.0.0";
+	std::string currentVersion = "v1.0.1";
 }
 
 #endif // VERSION_HPP
