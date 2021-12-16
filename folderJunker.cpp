@@ -72,6 +72,8 @@ int main(int argc, char const *argv[])
 				std::cerr << "Erros occured ! Please try again. Error no " << UNKNOWN_ERR << std::endl;
 			}
 		}
+		// Delete the fj object
+		delete fj;
 	}
 
 	return 0;
