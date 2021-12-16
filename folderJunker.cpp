@@ -13,6 +13,7 @@ Build System: CMake
 // Personal includes
 #include "fjhome.hpp"
 #include "help.hpp"
+#include "version.hpp"
 
 // Personal Defines
 #define COMP !std::strcmp
@@ -30,7 +31,7 @@ int main(int argc, char const *argv[])
 		fj->initializeTitle();
 
 		if (COMP(argv[1], "-v") || COMP(argv[1], "--version"))
-			std::cout << "Current App version: v1.0.0";
+			std::cout << "Current App version: " << FJ::currentVersion;
 		else if (COMP(argv[1], "-h") || COMP(argv[1], "--help"))
 		{
 			FJ::Help help;
