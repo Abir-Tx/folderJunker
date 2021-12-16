@@ -19,6 +19,8 @@ Build System: CMake
 #define COMP !std::strcmp
 // Error Codes
 #define NEGATIVE_NUMBER 101
+#define INVALID_ARG 102
+#define UNKNOWN_ERR 103
 
 // Driver Function
 int main(int argc, char const *argv[])
@@ -37,7 +39,7 @@ int main(int argc, char const *argv[])
 			FJ::Help help;
 			help.listAvailableCommands();
 		}
-		else
+		else /* For handling  positive int args */
 		{
 			try
 			{
@@ -63,11 +65,11 @@ int main(int argc, char const *argv[])
 			}
 			catch (std::invalid_argument)
 			{
-				std::cerr << "Invalid argument passed. Please pass positive numbers" << std::endl;
+				std::cerr << "Invalid argument passed. Please pass positive numbers. Error no " << INVALID_ARG << std::endl;
 			}
 			catch (...)
 			{
-				std::cerr << "Erros occured ! Please try again" << std::endl;
+				std::cerr << "Erros occured ! Please try again. Error no " << UNKNOWN_ERR << std::endl;
 			}
 		}
 	}
