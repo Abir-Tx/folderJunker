@@ -18,3 +18,7 @@ Create thousands of junk folders in one click
 - Run `cmake -G "Unix Makefiles" ..` or `cmake -G "MinGW Makefiles" ..` depending on your OS and what generator you want to use
 - Run `make` or `mingw32-make` depending on your OS
 - Run `./folderJunker` to run the program
+
+## Contributors
+
+- [Abir-Tx](https://github.com/abir-tx)
