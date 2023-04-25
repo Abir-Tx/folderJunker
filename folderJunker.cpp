@@ -33,8 +33,12 @@ int main(int argc, char const *argv[]) {
     FJ::FolderJunker *fj = new FJ::FolderJunker();
     fj->initializeTitle();
 
-    if (COMP(argv[1], "-v") || COMP(argv[1], "--version"))
-      std::cout << "Current App version: " << FJ::currentVersion;
+    if (COMP(argv[1], "-v") || COMP(argv[1], "--version")) {
+      std::cout << "Current App version: " << FJ::currentVersion << std::endl;
+      std::cout << "Developed by: Mushfiqur Rahman Abir\n"
+                << "Year: 2021\n";
+    }
+
     else if (COMP(argv[1], "-h") || COMP(argv[1], "--help")) {
       FJ::Help help;
       help.listAvailableCommands();
