@@ -60,7 +60,7 @@ int main(int argc, char const *argv[]) {
 
     // Create an object of the FolderJunker class
     FJ::FolderJunker *fj = new FJ::FolderJunker();
-    fj->initializeTitle();
+    fj->initializeTitle(isSilent);
 
     // Check for the version and help commands first and then check for the
     // other. If help or version is passed, then show the help or version and
