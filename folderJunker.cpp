@@ -62,10 +62,11 @@ int main(int argc, char const *argv[]) {
     for (int i = 0; i < argc; i++) {
       if (COMP(argv[i], "-w") || COMP(argv[i], "--word")) {
         hasW = true;
-        word = argv[i + 1];
+        argv[i + 1] == NULL ? word = "folder_Junker" : word = argv[i + 1];
       } else if (COMP(argv[i], "-n") || COMP(argv[i], "--number")) {
         hasN = true;
         number = std::stoi(argv[i + 1]);
+        number < 1 ? number = 1 : number = std::stoi(argv[i + 1]);
       }
     }
 
