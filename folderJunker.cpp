@@ -11,6 +11,8 @@ Abir Year: 2021 Build System: CMake
 // TODO: Add a disclaimer or warning when numbers are passed to the -w arg as
 // when numbers are passed, the random words generator will not be able to
 // create enough random words
+// NOTE: the --destructive arg will only work when the -w arg is passed.
+// Currently it does not work with the basic createFolders function
 
 // Includes
 #include <cstring>
