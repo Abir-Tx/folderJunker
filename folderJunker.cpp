@@ -41,6 +41,7 @@ int main(int argc, char const *argv[]) {
     // Variables to check CLA
     bool hasW = false;
     bool hasN = false;
+    bool isDestructive = false;
 
     // Variables to store the CLA or other values
     std::string word;
@@ -84,13 +85,15 @@ int main(int argc, char const *argv[]) {
               << INVALID_ARG << std::endl;
         }
         number < 1 ? number = 1 : number = std::stoi(argv[i + 1]);
+      } else if (COMP(argv[i], "--destructive")) {
+        isDestructive = true;
       }
     }
 
     // If --number is passed then only check for the --word/other arguments
     // which depends on the --number argument
     if (hasN) {
-      hasW ? fj->createFolders(word.c_str(), number)
+      hasW ? fj->createFolders(word.c_str(), number, isDestructive)
            : fj->createFolders(number);
     } else { /* Keeping this code for backward version compatibility */
       try {
