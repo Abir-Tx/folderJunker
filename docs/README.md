@@ -1,6 +1,6 @@
 # folderJunker
 
-[![CMake](https://github.com/Abir-Tx/folderJunker/actions/workflows/cmake.yml/badge.svg)](https://github.com/Abir-Tx/folderJunker/actions/workflows/cmake.yml) [![CodeFactor](https://www.codefactor.io/repository/github/abir-tx/folderjunker/badge)](https://www.codefactor.io/repository/github/abir-tx/folderjunker) ![GH Release](https://img.shields.io/github/v/release/Abir-Tx/folderJunker?label=Release) ![GitHub all releases](https://img.shields.io/github/downloads/Abir-Tx/folderJunker/total?label=Downloads) ![GitHub repo size](https://img.shields.io/github/repo-size/Abir-Tx/folderJunker?label=Repo%20Size) ![GitHub](https://img.shields.io/github/license/Abir-Tx/folderJunker?label=License)
+[![CMake](https://github.com/Abir-Tx/folderJunker/actions/workflows/cmake.yml/badge.svg)](https://github.com/Abir-Tx/folderJunker/actions/workflows/cmake.yml) [![CodeFactor](https://www.codefactor.io/repository/github/abir-tx/folderjunker/badge)](https://www.codefactor.io/repository/github/abir-tx/folderjunker) ![GH Release](https://img.shields.io/github/v/release/Abir-Tx/folderJunker?label=Release) ![Downloads Count](https://img.shields.io/github/downloads/Abir-Tx/folderJunker/total?label=Downloads) ![GitHub repo size](https://img.shields.io/github/repo-size/Abir-Tx/folderJunker?label=Repo%20Size) ![License](https://img.shields.io/github/license/Abir-Tx/folderJunker?label=License)
 
 Create thousands of junk folders in just using one command
 

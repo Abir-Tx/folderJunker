@@ -41,7 +41,7 @@ int main(int argc, char const *argv[]) {
     } else /* For handling  positive int args */
     {
       try {
-        int val = std::stoi(argv[1]);
+        int val = std::stoi(argv[1]); // Convert the char* to int
 
         bool num_accepted = false;
         try {
@@ -55,7 +55,7 @@ int main(int argc, char const *argv[]) {
           std::cout << std::endl;
         }
 
-        int &number = val;
+        int &number = val; // Reference to the val variable
         if (num_accepted)
           fj->createFolders(number);
       } catch (std::invalid_argument) {

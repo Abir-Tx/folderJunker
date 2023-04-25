@@ -1,3 +1,5 @@
+# CMAKE BUILD SYSTEM FOR FOLDERJUNKER PROJECT BY ABIR-TX
+
 cmake_minimum_required(VERSION 3.15)
 project(folderJunker VERSION 1.0.0)
 
