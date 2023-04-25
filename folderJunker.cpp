@@ -44,10 +44,19 @@ int main(int argc, char const *argv[]) {
     bool hasW = false;
     bool hasN = false;
     bool isDestructive = false;
+    bool isSilent = false;
 
     // Variables to store the CLA or other values
     std::string word;
     int number;
+
+    // Check if the user has passed the silent arg or not at the very beginning
+    // so that any kind of output can be suppressed from the beginning
+    for (int i = 0; i < argc; i++) {
+      if (COMP(argv[i], "-s") || COMP(argv[i], "--silent")) {
+        isSilent = true;
+      }
+    }
 
     // Create an object of the FolderJunker class
     FJ::FolderJunker *fj = new FJ::FolderJunker();
