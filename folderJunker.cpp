@@ -5,6 +5,15 @@ of this tool will be of course for test purposes. Developed By: Mushfiqur Rahman
 Abir Year: 2021 Build System: CMake
 */
 
+// TODO: if 1 is passed then show folder instead of folders
+// TODO: Increase the version number to 2.0.0 when merged
+// TODO: Add a new command to delete the folders created by this tool
+// TODO: Add a disclaimer or warning when numbers are passed to the -w arg as
+// when numbers are passed, the random words generator will not be able to
+// create enough random words
+// NOTE: the --destructive arg will only work when the -w arg is passed.
+// Currently it does not work with the basic createFolders function
+
 // Includes
 #include <cstring>
 #include <iostream>
@@ -24,12 +33,6 @@ Abir Year: 2021 Build System: CMake
 // Driver Function
 int main(int argc, char const *argv[]) {
 
-  bool hasS = false;
-  for (int i = 0; i < argc; i++) {
-    if (COMP(argv[i], "-s") || COMP(argv[i], "--silent"))
-      hasS = true;
-  }
-
   if (argc <= 1) /* If no args passed */
     std::cout
         << "No arguments passed. Specify the numbers of folder you want to "
@@ -37,20 +40,64 @@ int main(int argc, char const *argv[]) {
            "folderJunker --help for more info.";
   else /* If args are passed */
   {
+    // Variables to check CLA
+    bool hasW = false;
+    bool hasN = false;
+    bool isDestructive = false;
+
+    // Variables to store the CLA or other values
+    std::string word;
+    int number;
+
+    // Create an object of the FolderJunker class
     FJ::FolderJunker *fj = new FJ::FolderJunker();
     fj->initializeTitle();
 
+    // Check for the version and help commands first and then check for the
+    // other. If help or version is passed, then show the help or version and
+    // exit the program.
     if (COMP(argv[1], "-v") || COMP(argv[1], "--version")) {
       std::cout << "Current App version: " << FJ::currentVersion << std::endl;
       std::cout << "Developed by: Mushfiqur Rahman Abir\n"
                 << "Year: 2021\n";
+
+      exit(0);
     }
 
-    else if (COMP(argv[1], "-h") || COMP(argv[1], "--help")) {
+    if (COMP(argv[1], "-h") || COMP(argv[1], "--help")) {
       FJ::Help help;
       help.listAvailableCommands();
-    } else /* For handling  positive int args */
-    {
+      exit(0);
+    }
+
+    // Check if the user has passed any other arguments or not
+    for (int i = 0; i < argc; i++) {
+      if (COMP(argv[i], "-w") || COMP(argv[i], "--word")) {
+        hasW = true;
+        argv[i + 1] == NULL ? word = "folder_Junker" : word = argv[i + 1];
+      } else if (COMP(argv[i], "-n") || COMP(argv[i], "--number")) {
+        hasN = true;
+        try {
+          number = std::stoi(argv[i + 1]);
+        } catch (std::invalid_argument) {
+          std::cerr
+              << "Invalid argument passed. Please provide positive numbers "
+                 "as arguments. "
+                 "Error no "
+              << INVALID_ARG << std::endl;
+        }
+        number < 1 ? number = 1 : number = std::stoi(argv[i + 1]);
+      } else if (COMP(argv[i], "--destructive")) {
+        isDestructive = true;
+      }
+    }
+
+    // If --number is passed then only check for the --word/other arguments
+    // which depends on the --number argument
+    if (hasN) {
+      hasW ? fj->createFolders(word.c_str(), number, isDestructive)
+           : fj->createFolders(number);
+    } else { /* Keeping this code for backward version compatibility */
       try {
         int val = std::stoi(argv[1]); // Convert the char* to int
 
@@ -79,6 +126,7 @@ int main(int argc, char const *argv[]) {
                   << UNKNOWN_ERR << std::endl;
       }
     }
+
     // Delete the fj object
     delete fj;
   }
