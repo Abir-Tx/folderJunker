@@ -15,6 +15,20 @@ Create thousands of junk folders in just using one command
 - Open command prompt in the extracted folder and run `folderJunker.exe` with the number of folders you want to create as an argument. For example, to create 1000 folders, run `folderJunker.exe 1000`
 - You can also add the `folderJunker.exe` to your PATH variable to run it from anywhere
 
+## Available options
+
+```bash
+Usage: folderJunker.exe [OPTIONS] NUMBER_OF_FOLDERS
+
+-h, --help                Print this help message and exit
+-v, --version             Print version information and exit
+-s, --silent              Run silently without printing anything to the console
+-w, --word                Create folders with random words generated from the given string
+-n, --number              Specify the number of folders to be created
+--destructive             Delete all the content of existing folders before creating new ones.
+
+```
+
 ## Building from source
 
 - Clone the repository
