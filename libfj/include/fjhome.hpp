@@ -1,24 +1,31 @@
 #if !defined(FJHOME_HPP)
 #define FJHOME_HPP
 
-#include <iostream>
-#include <iomanip>
+#include <algorithm>
 #include <cstdlib>
 #include <direct.h>
+#include <iomanip>
+#include <iostream>
+#include <random>
 #include <string>
-namespace FJ
-{
-	class FolderJunker
-	{
-	private:
-		/* data */
-	public:
-		FolderJunker(/* args */);
-		~FolderJunker();
-		void initializeTitle();
-		void createFolders(const char *folderName, int numbers);
-		void createFolders(int numbers);
-	};
+#include <vector>
+
+
+namespace FJ {
+class FolderJunker {
+private:
+  /* data */
+protected:
+  std::vector<std::string> random_words_generator(std::string word,
+                                                  int numbers);
+
+public:
+  FolderJunker(/* args */);
+  ~FolderJunker();
+  void initializeTitle();
+  void createFolders(const char *folderName, int numbers);
+  void createFolders(int numbers);
+};
 
 } // namespace FJ
 
