@@ -12,7 +12,8 @@ void FolderJunker::initializeTitle() {
 
 // The main createFolders function that creates folders with custom names |
 // Overloaded function
-void FolderJunker::createFolders(const char *folderName, int numbers) {
+void FolderJunker::createFolders(const char *folderName, int numbers,
+                                 bool isDestructive) {
   std::cout << "Creating " << numbers << " folders named " << folderName
             << " in this current directory..." << std::endl;
 
@@ -20,12 +21,49 @@ void FolderJunker::createFolders(const char *folderName, int numbers) {
   //     use them as the folder names
   std::vector<std::string> random_words =
       random_words_generator(folderName, numbers);
-  try {
-    for (int i = 0; i < numbers; i++)
-      _mkdir((random_words[i]).c_str());
-    std::cout << "Folder creation successfull" << std::endl;
-  } catch (...) {
-    std::cout << "Errors occured while creating folders." << std::endl;
+  if (isDestructive) {
+    // CHeck if the folder name already exists or not and if it exists, then
+    // delete it and then create a new folder with the same name
+    try {
+      for (int i = 0; i < numbers; i++) {
+        if (_mkdir((random_words[i]).c_str()) == 0)
+          std::cout << "Folder " << random_words[i] << " created successfully"
+                    << std::endl;
+        else {
+          std::cout << "Folder " << random_words[i] << " already exists"
+                    << std::endl;
+          std::cout << "Deleting folder " << random_words[i] << "..."
+                    << std::endl;
+          std::filesystem::remove_all(random_words[i]);
+          std::cout << "Folder " << random_words[i] << " deleted successfully"
+                    << std::endl;
+          std::cout << "Creating folder " << random_words[i] << "..."
+                    << std::endl;
+          _mkdir((random_words[i]).c_str());
+          std::cout << "Folder " << random_words[i] << " created successfully"
+                    << std::endl;
+        }
+      }
+    } catch (...) {
+      std::cout << "Errors occured while creating folders." << std::endl;
+    }
+
+  } else {
+    // check if the generated folder name already exists or not
+    // if it exists, then skip that folder name and move to the next name and
+    // create that folder if it doesn't exist, then create that folder
+    try {
+      for (int i = 0; i < numbers; i++) {
+        if (_mkdir((random_words[i]).c_str()) == 0)
+          std::cout << "Folder " << random_words[i] << " created successfully"
+                    << std::endl;
+        else
+          std::cout << "Folder " << random_words[i] << " already exists"
+                    << std::endl;
+      }
+    } catch (...) {
+      std::cout << "Errors occured while creating folders." << std::endl;
+    }
   }
 }
 
