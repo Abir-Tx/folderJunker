@@ -4,6 +4,6 @@
 #include <iostream>
 
 const std::string availCmd[] = {"-h, --help", "-v, --version", "-w, --word",
-                                "-n, --number"};
+                                "-n, --number", "--destructive"};
 
 #endif // AVAILABLECOMMANDS_HPP

@@ -11,6 +11,8 @@ Abir Year: 2021 Build System: CMake
 // TODO: Add a disclaimer or warning when numbers are passed to the -w arg as
 // when numbers are passed, the random words generator will not be able to
 // create enough random words
+// NOTE: the --destructive arg will only work when the -w arg is passed.
+// Currently it does not work with the basic createFolders function
 
 // Includes
 #include <cstring>
@@ -41,6 +43,7 @@ int main(int argc, char const *argv[]) {
     // Variables to check CLA
     bool hasW = false;
     bool hasN = false;
+    bool isDestructive = false;
 
     // Variables to store the CLA or other values
     std::string word;
@@ -84,13 +87,15 @@ int main(int argc, char const *argv[]) {
               << INVALID_ARG << std::endl;
         }
         number < 1 ? number = 1 : number = std::stoi(argv[i + 1]);
+      } else if (COMP(argv[i], "--destructive")) {
+        isDestructive = true;
       }
     }
 
     // If --number is passed then only check for the --word/other arguments
     // which depends on the --number argument
     if (hasN) {
-      hasW ? fj->createFolders(word.c_str(), number)
+      hasW ? fj->createFolders(word.c_str(), number, isDestructive)
            : fj->createFolders(number);
     } else { /* Keeping this code for backward version compatibility */
       try {

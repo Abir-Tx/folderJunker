@@ -4,12 +4,12 @@
 #include <algorithm>
 #include <cstdlib>
 #include <direct.h>
+#include <filesystem>
 #include <iomanip>
 #include <iostream>
 #include <random>
 #include <string>
 #include <vector>
-
 
 namespace FJ {
 class FolderJunker {
@@ -23,7 +23,7 @@ public:
   FolderJunker(/* args */);
   ~FolderJunker();
   void initializeTitle();
-  void createFolders(const char *folderName, int numbers);
+  void createFolders(const char *folderName, int numbers, bool isDestructive);
   void createFolders(int numbers);
 };
 
