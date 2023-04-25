@@ -63,16 +63,6 @@ int main(int argc, char const *argv[]) {
     FJ::FolderJunker *fj = new FJ::FolderJunker();
     fj->initializeTitle(isSilent);
 
-    // If the user has passed the silent arg then suppress all the output from
-    // the std::cout
-    std::ofstream devnull("nul");
-    // TODO: For working on Linux, change the above line to: std::ofstream
-    // devnull("/dev/null");
-    std::streambuf *oldCoutStreamBuf;
-    if (isSilent) {
-      oldCoutStreamBuf = std::cout.rdbuf(devnull.rdbuf());
-    }
-
     // Check for the version and help commands first and then check for the
     // other. If help or version is passed, then show the help or version and
     // exit the program.
@@ -88,6 +78,17 @@ int main(int argc, char const *argv[]) {
       FJ::Help help;
       help.listAvailableCommands();
       exit(0);
+    }
+
+    // If the user has passed the silent arg then suppress all the output from
+    // the std::cout. I am using this after the -v and -h cause they need to be
+    // shown
+    std::ofstream devnull("nul");
+    // TODO: For working on Linux, change the above line to: std::ofstream
+    // devnull("/dev/null");
+    std::streambuf *oldCoutStreamBuf;
+    if (isSilent) {
+      oldCoutStreamBuf = std::cout.rdbuf(devnull.rdbuf());
     }
 
     // Check if the user has passed any other arguments or not
@@ -155,6 +156,7 @@ int main(int argc, char const *argv[]) {
       std::cout.rdbuf(oldCoutStreamBuf); // restore old cout buffer
       devnull.close();                   // close the null stream
     }
-
-    return 0;
   }
+
+  return 0;
+}
