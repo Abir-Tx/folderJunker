@@ -13,9 +13,11 @@ Abir Year: 2021 Build System: CMake
 // create enough random words
 // NOTE: the --destructive arg will only work when the -w arg is passed.
 // Currently it does not work with the basic createFolders function
+// TODO: Add a --verbose arg to show more info about the process
 
 // Includes
 #include <cstring>
+#include <fstream>
 #include <iostream>
 
 // Personal includes
@@ -44,14 +46,23 @@ int main(int argc, char const *argv[]) {
     bool hasW = false;
     bool hasN = false;
     bool isDestructive = false;
+    bool isSilent = false;
 
     // Variables to store the CLA or other values
     std::string word;
     int number;
 
+    // Check if the user has passed the silent arg or not at the very beginning
+    // so that any kind of output can be suppressed from the beginning
+    for (int i = 0; i < argc; i++) {
+      if (COMP(argv[i], "-s") || COMP(argv[i], "--silent")) {
+        isSilent = true;
+      }
+    }
+
     // Create an object of the FolderJunker class
     FJ::FolderJunker *fj = new FJ::FolderJunker();
-    fj->initializeTitle();
+    fj->initializeTitle(isSilent);
 
     // Check for the version and help commands first and then check for the
     // other. If help or version is passed, then show the help or version and
@@ -68,6 +79,17 @@ int main(int argc, char const *argv[]) {
       FJ::Help help;
       help.listAvailableCommands();
       exit(0);
+    }
+
+    // If the user has passed the silent arg then suppress all the output from
+    // the std::cout. I am using this after the -v and -h cause they need to be
+    // shown
+    std::ofstream devnull("nul");
+    // TODO: For working on Linux, change the above line to: std::ofstream
+    // devnull("/dev/null");
+    std::streambuf *oldCoutStreamBuf;
+    if (isSilent) {
+      oldCoutStreamBuf = std::cout.rdbuf(devnull.rdbuf());
     }
 
     // Check if the user has passed any other arguments or not
@@ -127,8 +149,14 @@ int main(int argc, char const *argv[]) {
       }
     }
 
+    /* CLEANUP */
     // Delete the fj object
     delete fj;
+    // Restore the cout buffer
+    if (isSilent) {
+      std::cout.rdbuf(oldCoutStreamBuf); // restore old cout buffer
+      devnull.close();                   // close the null stream
+    }
   }
 
   return 0;

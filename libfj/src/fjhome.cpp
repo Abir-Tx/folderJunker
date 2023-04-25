@@ -6,8 +6,9 @@ FolderJunker::FolderJunker(/* args */) {}
 
 FolderJunker::~FolderJunker() {}
 
-void FolderJunker::initializeTitle() {
-  std::cout << "Folder Junker" << std::endl;
+void FolderJunker::initializeTitle(bool isSlilent) {
+  if (!isSlilent)
+    std::cout << "Folder Junker" << std::endl;
 }
 
 // The main createFolders function that creates folders with custom names |

@@ -22,7 +22,7 @@ protected:
 public:
   FolderJunker(/* args */);
   ~FolderJunker();
-  void initializeTitle();
+  void initializeTitle(bool isSilent);
   void createFolders(const char *folderName, int numbers, bool isDestructive);
   void createFolders(int numbers);
 };
