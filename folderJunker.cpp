@@ -6,6 +6,7 @@ Abir Year: 2021 Build System: CMake
 */
 
 // TODO: if 1 is passed then show folder instead of folders
+// TODO: Increase the version number to 2.0.0 when merged
 
 // Includes
 #include <cstring>
@@ -69,7 +70,15 @@ int main(int argc, char const *argv[]) {
         argv[i + 1] == NULL ? word = "folder_Junker" : word = argv[i + 1];
       } else if (COMP(argv[i], "-n") || COMP(argv[i], "--number")) {
         hasN = true;
-        number = std::stoi(argv[i + 1]);
+        try {
+          number = std::stoi(argv[i + 1]);
+        } catch (std::invalid_argument) {
+          std::cerr
+              << "Invalid argument passed. Please provide positive numbers "
+                 "as arguments. "
+                 "Error no "
+              << INVALID_ARG << std::endl;
+        }
         number < 1 ? number = 1 : number = std::stoi(argv[i + 1]);
       }
     }
