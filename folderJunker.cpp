@@ -33,11 +33,15 @@ int main(int argc, char const *argv[]) {
            "folderJunker --help for more info.";
   else /* If args are passed */
   {
+    // Variables to check CLA
     bool hasW = false;
     bool hasN = false;
 
+    // Variables to store the CLA or other values
     std::string word;
     int number;
+
+    // Create an object of the FolderJunker class
     FJ::FolderJunker *fj = new FJ::FolderJunker();
     fj->initializeTitle();
 
@@ -73,10 +77,8 @@ int main(int argc, char const *argv[]) {
     // If --number is passed then only check for the --word/other arguments
     // which depends on the --number argument
     if (hasN) {
-      if (hasW)
-        fj->createFolders(word.c_str(), number);
-      else
-        fj->createFolders(number);
+      hasW ? fj->createFolders(word.c_str(), number)
+           : fj->createFolders(number);
     } else {
       try {
         int val = std::stoi(argv[1]); // Convert the char* to int
