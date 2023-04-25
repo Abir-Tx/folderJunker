@@ -16,6 +16,7 @@ Abir Year: 2021 Build System: CMake
 
 // Includes
 #include <cstring>
+#include <fstream>
 #include <iostream>
 
 // Personal includes
@@ -61,6 +62,16 @@ int main(int argc, char const *argv[]) {
     // Create an object of the FolderJunker class
     FJ::FolderJunker *fj = new FJ::FolderJunker();
     fj->initializeTitle(isSilent);
+
+    // If the user has passed the silent arg then suppress all the output from
+    // the std::cout
+    std::ofstream devnull("nul");
+    // TODO: For working on Linux, change the above line to: std::ofstream
+    // devnull("/dev/null");
+    std::streambuf *oldCoutStreamBuf;
+    if (isSilent) {
+      oldCoutStreamBuf = std::cout.rdbuf(devnull.rdbuf());
+    }
 
     // Check for the version and help commands first and then check for the
     // other. If help or version is passed, then show the help or version and
@@ -136,9 +147,14 @@ int main(int argc, char const *argv[]) {
       }
     }
 
+    /* CLEANUP */
     // Delete the fj object
     delete fj;
-  }
+    // Restore the cout buffer
+    if (isSilent) {
+      std::cout.rdbuf(oldCoutStreamBuf); // restore old cout buffer
+      devnull.close();                   // close the null stream
+    }
 
-  return 0;
-}
+    return 0;
+  }
