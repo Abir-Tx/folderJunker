@@ -92,7 +92,7 @@ int main(int argc, char const *argv[]) {
     if (hasN) {
       hasW ? fj->createFolders(word.c_str(), number)
            : fj->createFolders(number);
-    } else {
+    } else { /* Keeping this code for backward version compatibility */
       try {
         int val = std::stoi(argv[1]); // Convert the char* to int
 
