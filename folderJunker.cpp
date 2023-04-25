@@ -23,6 +23,9 @@ Abir Year: 2021 Build System: CMake
 
 // Driver Function
 int main(int argc, char const *argv[]) {
+  bool hasW = false;
+  bool hasN = false;
+
   if (argc <= 1) /* If no args passed */
     std::cout
         << "No arguments passed. Specify the numbers of folder you want to "
@@ -33,17 +36,22 @@ int main(int argc, char const *argv[]) {
     FJ::FolderJunker *fj = new FJ::FolderJunker();
     fj->initializeTitle();
 
-    if (COMP(argv[1], "-v") || COMP(argv[1], "--version")) {
-      std::cout << "Current App version: " << FJ::currentVersion << std::endl;
-      std::cout << "Developed by: Mushfiqur Rahman Abir\n"
-                << "Year: 2021\n";
+    std::string word;
+    // Check if the user has passed any arguments or not
+    for (int i = 0; i < argc; i++) {
+      if (COMP(argv[i], "-w") || COMP(argv[i], "--word")) {
+        hasW = true;
+        word = argv[i + 1];
+      } else if (COMP(argv[i], "-n") || COMP(argv[i], "--number")) {
+        hasN = true;
+      }
     }
 
-    else if (COMP(argv[1], "-h") || COMP(argv[1], "--help")) {
-      FJ::Help help;
-      help.listAvailableCommands();
-    } else /* For handling  positive int args */
-    {
+    if (hasN) {
+      if (hasW) {
+        fj->createFolders(word.c_str(), 5);
+      }
+    } else {
       try {
         int val = std::stoi(argv[1]); // Convert the char* to int
 
@@ -71,6 +79,17 @@ int main(int argc, char const *argv[]) {
         std::cerr << "Errors occured ! Please try again. Error no "
                   << UNKNOWN_ERR << std::endl;
       }
+    }
+
+    if (COMP(argv[1], "-v") || COMP(argv[1], "--version")) {
+      std::cout << "Current App version: " << FJ::currentVersion << std::endl;
+      std::cout << "Developed by: Mushfiqur Rahman Abir\n"
+                << "Year: 2021\n";
+    }
+
+    else if (COMP(argv[1], "-h") || COMP(argv[1], "--help")) {
+      FJ::Help help;
+      help.listAvailableCommands();
     }
     // Delete the fj object
     delete fj;
