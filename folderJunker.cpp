@@ -7,6 +7,10 @@ Abir Year: 2021 Build System: CMake
 
 // TODO: if 1 is passed then show folder instead of folders
 // TODO: Increase the version number to 2.0.0 when merged
+// TODO: Add a new command to delete the folders created by this tool
+// TODO: Add a disclaimer or warning when numbers are passed to the -w arg as
+// when numbers are passed, the random words generator will not be able to
+// create enough random words
 
 // Includes
 #include <cstring>
