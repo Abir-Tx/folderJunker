@@ -23,6 +23,13 @@ Abir Year: 2021 Build System: CMake
 
 // Driver Function
 int main(int argc, char const *argv[]) {
+
+  bool hasS = false;
+  for (int i = 0; i < argc; i++) {
+    if (COMP(argv[i], "-s") || COMP(argv[i], "--silent"))
+      hasS = true;
+  }
+
   if (argc <= 1) /* If no args passed */
     std::cout
         << "No arguments passed. Specify the numbers of folder you want to "
