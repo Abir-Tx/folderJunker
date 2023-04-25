@@ -13,6 +13,7 @@ Abir Year: 2021 Build System: CMake
 // create enough random words
 // NOTE: the --destructive arg will only work when the -w arg is passed.
 // Currently it does not work with the basic createFolders function
+// TODO: Add a --verbose arg to show more info about the process
 
 // Includes
 #include <cstring>
