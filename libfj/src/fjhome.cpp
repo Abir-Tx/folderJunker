@@ -12,8 +12,6 @@ void FolderJunker::initializeTitle() {
 
 // The main createFolders function that creates folders with custom names |
 // Overloaded function
-// TODO: Add a feature to create folders with custom names. This function is
-// currently not working.
 void FolderJunker::createFolders(const char *folderName, int numbers) {
   std::cout << "Creating " << numbers << " folders named " << folderName
             << " in this current directory..." << std::endl;
